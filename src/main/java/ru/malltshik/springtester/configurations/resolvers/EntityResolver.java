@@ -57,7 +57,9 @@ public class EntityResolver implements HandlerMethodArgumentResolver {
                     entityType.toString(), id));
         }
         if(entityType.getSuperclass().equals(BaseEntity.class)) {
-            if(((BaseEntity) entity).getAccountId().equals(42L)) {
+            Long accountId = ((BaseEntity) entity).getAccountId();
+            if(accountId != null && accountId
+                    .equals(42L)) {
                 throw new ForbiddenException();
             }
         }
